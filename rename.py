@@ -1,7 +1,6 @@
 import os
 import xml.etree.ElementTree as ET
 
-
 def trans_fanhao(input_string):
     index_of_first_digit = next((i for i, char in enumerate(input_string) if char.isdigit()), None)
     if index_of_first_digit is not None:
@@ -12,7 +11,7 @@ def trans_fanhao(input_string):
     else:
         return input_string
 
-def jialebi(str):
+def is_Caribbeancom(str):
     if str[0].isdigit():
         return True
     return False
@@ -23,13 +22,12 @@ if __name__=='__main__':
         for actor in actor_ls:
             av_ls=os.listdir('./JAV_output/'+actor)
             for av in av_ls:
-                if(jialebi(av)):continue
+                if(is_Caribbeancom(av)):continue
                 SO_flag=av.endswith('SO')
                 all_file_ls=os.listdir('./JAV_output/'+actor+'/'+av)
                 nfo_file_name= [f1 for f1 in all_file_ls if f1.endswith('.nfo')][0]
                 rename_file_name = [f1 for f1 in all_file_ls if f1.startswith(av)]
                 nfo_path='./JAV_output/'+actor+'/'+av+'/'+nfo_file_name
-
                 tree = ET.parse(nfo_path)
                 root = tree.getroot()
                 fix_lst=[".//title",".//originaltitle",".//sorttitle",".//outline",".//plot",".//num"]
